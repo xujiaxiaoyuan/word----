@@ -1,0 +1,21 @@
+Private Sub Document_ContentControlOnExit(ByVal ContentControl As ContentControl, Cancel As Boolean)
+    Selection.Range.HighlightColorIndex = wdNoHighlight
+End Sub
+
+Private Sub Document_ContentControlOnEnter(ByVal ContentControl As ContentControl)
+    If Not Selection.FormFields Is Nothing Then
+        With Selection.FormFields(1).Range
+            .HighlightColorIndex = wdYellow
+            .Font.Underline = wdUnderlineWavy
+        End With
+    Else
+        Selection.Range.HighlightColorIndex = wdYellow
+    End If
+End Sub
+
+Private Sub Document_ContentControlOnDoubleClick(ByVal ContentControl As ContentControl, Cancel As Boolean)
+    With Selection.FormFields(1).Range.Font
+        .Underline = wdUnderlineWavyDouble
+        .UnderlineColor = wdColorRed
+    End With
+End Sub
